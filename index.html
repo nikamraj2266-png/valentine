@@ -2,77 +2,95 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Be My Valentine</title>
+  <title>Valentine 💖</title>
   <style>
     body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background: #0f172a;
+      background: #ffe6f0;
       font-family: Arial, sans-serif;
-    }
-    .card {
-      background: white;
-      padding: 30px;
-      border-radius: 12px;
       text-align: center;
-      width: 300px;
+      margin-top: 80px;
     }
-    h2 {
-      color: #e11d48;
+
+    h1 {
+      color: #e60073;
     }
+
+    #message {
+      margin: 20px;
+      font-size: 20px;
+      color: #444;
+      min-height: 30px;
+    }
+
     button {
-      padding: 10px 20px;
-      margin: 10px;
-      font-size: 16px;
+      padding: 12px 25px;
+      font-size: 18px;
       border: none;
-      border-radius: 8px;
+      border-radius: 25px;
       cursor: pointer;
+      margin: 10px;
     }
-    .yes-button {
-      background: #ec4899;
+
+    #yesBtn {
+      background: #ff4d94;
       color: white;
     }
-    .no-button {
-      background: #e5e7eb;
+
+    #noBtn {
+      background: #999;
+      color: white;
+      position: absolute;
+    }
+
+    #teddy {
+      display: none;
+      font-size: 140px;
+      margin-top: 30px;
     }
   </style>
 </head>
 <body>
 
-<div class="card">
-  <h2 id="message">Will you be my Valentine? 💖</h2>
-  <button class="yes-button" onclick="handleYesClick()">Yes</button>
-  <button class="no-button" onclick="handleNoClick()">No</button>
-</div>
+  <h1>Would you be my Valentine, Pranali? 💕</h1>
 
-<script>
-  let messageIndex = 0;
-  const messages = [
-    "Please think again 😢",
-    "Don't break my heart 💔",
-    "I'm serious 🥺",
-    "Last chance 😭"
-  ];
+  <div id="message"></div>
 
-  function handleNoClick() {
-    const noBtn = document.querySelector(".no-button");
-    const yesBtn = document.querySelector(".yes-button");
+  <button id="yesBtn" onclick="yesClicked()">Yes 💖</button>
+  <button id="noBtn" onclick="noClicked()">No 😢</button>
 
-    document.getElementById("message").innerText =
-      messages[messageIndex];
+  <div id="teddy">🧸</div>
 
-    messageIndex = (messageIndex + 1) % messages.length;
+  <script>
+    let noCount = 0;
+    const messages = [
+      "Think it again… 😏",
+      "Try 😜",
+      "Try harder 😂",
+      "You can’t catch me 😎"
+    ];
 
-    let size = window.getComputedStyle(yesBtn).fontSize;
-    yesBtn.style.fontSize = (parseFloat(size) + 4) + "px";
-  }
+    function noClicked() {
+      const msg = document.getElementById("message");
+      msg.innerText = messages[Math.min(noCount, messages.length - 1)];
 
-  function handleYesClick() {
-    window.location.href = "yes.html";
-  }
-</script>
+      const noBtn = document.getElementById("noBtn");
+      const x = Math.random() * (window.innerWidth - 120);
+      const y = Math.random() * (window.innerHeight - 120);
+
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+
+      noCount++;
+    }
+
+    function yesClicked() {
+      document.body.innerHTML = `
+        <h1>Yayyy! 🥰</h1>
+        <p style="font-size:22px;">You made my day 💖</p>
+        <div style="font-size:160px;">🧸</div>
+      `;
+    }
+  </script>
 
 </body>
 </html>
