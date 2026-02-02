@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Be My Valentine</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #0f172a;
+      font-family: Arial, sans-serif;
+    }
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      text-align: center;
+      width: 300px;
+    }
+    h2 {
+      color: #e11d48;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .yes-button {
+      background: #ec4899;
+      color: white;
+    }
+    .no-button {
+      background: #e5e7eb;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <h2 id="message">Will you be my Valentine? 💖</h2>
+  <button class="yes-button" onclick="handleYesClick()">Yes</button>
+  <button class="no-button" onclick="handleNoClick()">No</button>
+</div>
+
+<script>
+  let messageIndex = 0;
+  const messages = [
+    "Please think again 😢",
+    "Don't break my heart 💔",
+    "I'm serious 🥺",
+    "Last chance 😭"
+  ];
+
+  function handleNoClick() {
+    const noBtn = document.querySelector(".no-button");
+    const yesBtn = document.querySelector(".yes-button");
+
+    document.getElementById("message").innerText =
+      messages[messageIndex];
+
+    messageIndex = (messageIndex + 1) % messages.length;
+
+    let size = window.getComputedStyle(yesBtn).fontSize;
+    yesBtn.style.fontSize = (parseFloat(size) + 4) + "px";
+  }
+
+  function handleYesClick() {
+    window.location.href = "yes.html";
+  }
+</script>
+
+</body>
+</html>
